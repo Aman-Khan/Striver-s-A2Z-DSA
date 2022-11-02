@@ -1,0 +1,13 @@
+//recursive insertion sort function
+void recInsertionSort(int arr[], int i, int n){
+    if(i==n){
+        return;
+    }
+
+    for(int j=i; j>=0; j--){
+        if(arr[j+1]<arr[j]){
+            swap(arr[j+1], arr[j]);
+        }
+    }
+    recInsertionSort(arr, i+1, n);
+}
