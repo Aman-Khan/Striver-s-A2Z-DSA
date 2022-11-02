@@ -1,0 +1,51 @@
+void merge(int arr[], int s, int e){ //function to merge (arr - array, s - start, e - end)
+    int mid = s+(e-s)/2;             //mid - middle of start & end position
+    int nl = mid-s+1;                //nl length of left arrary 
+    int nr = e-mid;                  //nr length of right arrary
+
+    int larr[nl];                    //initialize left array
+    int rarr[nr];                    //initialize right array
+
+    for(int i=0; i<nl; i++){        //put start to mid value in left array 
+        larr[i] = arr[s+i];
+    }
+    for(int j=0; j<nr; j++){        //put mid to end value in right array 
+        rarr[j] = arr[mid+1+j];
+    }
+  
+    int i=0;
+    int j=0;
+    int k=s;
+
+    while(i<nl && j<nr){            //loop to file original array in sorted order
+        if(larr[i]<=rarr[j]){
+            arr[k] = larr[i];
+            i++;
+        }
+        else{
+            arr[k] = rarr[j];
+            j++;
+        }
+        k++;
+    }
+
+    while(i<nl){
+        arr[k] = larr[i];
+        i++;
+        k++;
+    }
+    while(j<nr){
+        arr[k] = rarr[j];
+        j++;
+        k++;
+    }
+}
+
+void mergeSort(int arr[], int s, int e){      //recursive function to split and merge array
+    if(s<e){
+        int mid = s+(e-s)/2;
+        mergeSort(arr, s, mid);
+        mergeSort(arr, mid+1, e);
+        merge(arr, s, e);
+    }
+}
