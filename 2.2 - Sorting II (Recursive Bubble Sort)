@@ -1,0 +1,12 @@
+//recursive bubble sort function
+void recBubbleSort(int arr[],int n){
+    if(n==0){
+        return;
+    }
+    for(int j=0; j<n; j++){
+        if(arr[j]>arr[j+1]){
+            swap(arr[j], arr[j+1]);
+        }
+    }
+    recBubbleSort(arr, n-1);
+}
