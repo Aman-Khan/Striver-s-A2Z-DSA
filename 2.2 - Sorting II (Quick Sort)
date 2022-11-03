@@ -1,0 +1,32 @@
+int partition(int arr[], int s, int e){ //function to assgin the true position of pivot element
+    int pivot = arr[s];
+    int i=s;
+    int j=e;
+
+    while(i<=j){
+        while(arr[i]<=pivot){           //locate the bigger element than pivot
+            i++;
+        }
+        while(arr[j]>pivot){            //locate the smaller element than pivot
+            j--;
+        }
+        if(i<=j){
+            swap(arr[i], arr[j]);       //swap bigger & smaller element
+            i++;
+            j--;
+        }
+    }
+    arr[s] = arr[j];
+    arr[j] = pivot;
+    return j;                            //return true postion of pivot
+}
+
+void quickSort(int arr[], int s, int e){ 
+    int index = partition(arr, s, e);    
+    if(s<index-1){
+        quickSort(arr, s, index-1);
+    }
+    if(index+1<e){
+        quickSort(arr, index+1, e);
+    }
+}
