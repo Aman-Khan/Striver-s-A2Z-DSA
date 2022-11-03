@@ -1,0 +1,17 @@
+void movesZerosToEnd(int arr[], int n){
+    int i=0;
+    int j=n-1;
+    while(i<j){
+        if(arr[j]==0){
+            j--;
+        }
+        else if(arr[i]!=0){
+            i++;
+        }
+        else{
+            swap(arr[i], arr[j]);
+            i++;
+            j--;
+        }
+    }
+}
