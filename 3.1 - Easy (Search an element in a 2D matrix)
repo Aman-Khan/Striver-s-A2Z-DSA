@@ -1,0 +1,9 @@
+int matSearch (vector <vector <int>> &mat, int N, int M, int X)
+{
+      for(int i=0; i<N*M; i++){
+          if(mat[i%N][i/N]==X){
+              return 1;
+          }
+      }    
+      return 0;  
+}
