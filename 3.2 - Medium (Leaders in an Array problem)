@@ -1,0 +1,19 @@
+vector<int> leaders(int a[], int n){
+    stack<int> s;
+    vector<int> ans;
+    int temp = a[n-1];
+    s.push(temp);
+
+    for(int i=n-2; i>=0; i--){
+        if(a[i]>=temp){
+            s.push(a[i]);
+            temp = a[i];
+        }
+    }
+    int sz = s.size();
+    for(int i=0; i<sz; i++){
+        ans.push_back(s.top());
+        s.pop();
+    }
+    return ans;
+ }
