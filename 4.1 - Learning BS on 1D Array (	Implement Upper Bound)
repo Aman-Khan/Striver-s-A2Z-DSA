@@ -1,0 +1,45 @@
+pair<int, int> getFloorAndCeil(int arr[], int n, int x) {
+  int mini = -1;
+  int maxi = -1;
+
+  for(int i=0; i<n; i++){
+      if(arr[i]<=x){
+          if(arr[i]>mini) mini=arr[i];
+      }
+      if(arr[i]>=x){
+          if(maxi==-1 || arr[i]<maxi){
+              maxi=arr[i];
+          }
+      }
+  }
+  return make_pair(mini, maxi);
+
+// 2nd Approach
+
+pair<int, int> getFloorAndCeil(int arr[], int n, int x) {
+    sort(arr, arr+n);
+    int i=0;
+    int j=n-1;
+    int mid = i+(j-i)/2;
+    while(i<=j){
+        if(arr[mid]==x){
+            return make_pair(arr[mid], arr[mid]);
+        }
+        else if(arr[mid]>x){
+            j=mid-1;
+        }
+        else{
+            i=mid+1;
+        }
+        mid = i+(j-i)/2;
+    }
+    if(x<=arr[0]){
+        return make_pair(-1, arr[mid]);
+    }
+    else if(x>=arr[n-1]){
+        return make_pair(arr[mid-1], -1);
+    }
+    else{
+        return make_pair(arr[mid-1], arr[mid]);
+    }
+}
