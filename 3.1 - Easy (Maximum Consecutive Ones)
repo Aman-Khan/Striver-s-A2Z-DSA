@@ -1,0 +1,19 @@
+int findZeroes(int arr[], int n, int m) {
+    int s=0;
+    int maxOne=0;
+    int zCnt=0;
+
+    for(int e=0; e<n; e++){
+        if(arr[e]==0){
+            zCnt++;
+        }
+        while(zCnt>m){
+            if(arr[s]==0){
+                zCnt--;
+            }
+            s++;
+        }
+        maxOne = max(maxOne, e-s+1);
+    }
+    return maxOne;
+}
