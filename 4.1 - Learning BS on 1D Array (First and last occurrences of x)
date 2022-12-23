@@ -1,0 +1,37 @@
+int leftOccurrence(int arr[], int n, int x){
+    int ind =-1;
+    int i=0;
+    int j=n;
+    int mid = i+(j-i)/2;
+    while(i<=j){
+        if(arr[mid]>=x){
+            if(arr[mid]==x) ind = mid;
+            j=mid-1;
+        }
+        else i=mid+1;
+        mid=i+(j-i)/2;
+    }
+    return ind;
+}
+int rightOccurrence(int arr[], int n, int x){
+    int ind =-1;
+    int i=0;
+    int j=n;
+    int mid = i+(j-i)/2;
+    while(i<=j){
+        if(arr[mid]<=x){
+            if(arr[mid]==x) ind = mid;
+            i=mid+1;
+        }
+        else j=mid-1;
+        mid=i+(j-i)/2;
+    }
+    return ind;
+}
+vector<int> find(int arr[], int n , int x )
+{
+    int leftIndex = leftOccurrence(arr, n, x);
+    int rightIndex = rightOccurrence(arr, n, x);
+    
+    return {leftIndex, rightIndex};
+}
