@@ -1,0 +1,34 @@
+   bool isPossible(vector<int> weights, int days, int pWeg){
+        int possibleDays=1;
+        int possibleLoad=0;
+        for(int i=0; i<weights.size(); i++){
+            if(possibleLoad+weights[i]<=pWeg){
+                possibleLoad+=weights[i];
+            }
+            else{
+                possibleDays++;
+                if(possibleDays>days || weights[i]>pWeg) return false;
+                possibleLoad=weights[i];
+            }
+        }
+        return true;
+    }
+
+    int shipWithinDays(vector<int>& weights, int days) {
+        int minWeight=0;
+        int maxWeight=accumulate(weights.begin(), weights.end(),0);
+        int ans=maxWeight;
+        int mid=minWeight+(maxWeight-minWeight)/2;
+
+        while(minWeight<=maxWeight){
+            if(isPossible(weights, days, mid)){
+                ans=min(ans, mid);
+                maxWeight=mid-1;
+            }
+            else{
+                minWeight=mid+1;
+            }
+            mid=minWeight+(maxWeight-minWeight)/2;
+        }
+        return ans;
+    }
